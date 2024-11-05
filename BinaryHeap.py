@@ -3,6 +3,8 @@ import math
 class BinaryHeap:
     def __init__(self, array=[None, 50, 40, 20, 15, 16, 13, None, None]):
         self.array = array
+        
+        #Contador de elementos preechidos
         self.size = len([x for x in array if x is not None]) 
 
     
@@ -18,6 +20,23 @@ class BinaryHeap:
             self._subir(self.size)
         else:
             print("Overflow: A heap está cheia.")
+            
+    def remover(self):
+        if self.size != 0:
+            # Salva o elemento raiz
+            raiz = self.array[1]
+            
+            print(f"Movendo ultimo para raiz - {self.array[self.size]} <-> {self.array[1]}")
+            
+            # Pega o ultimo elemento e move para a raiz
+            self.array[1] = self.array[self.size]
+            
+            
+            self._descer(1, self.size)
+            
+            return raiz
+        else:
+                print("Underflow: A heap está vazia.")
     
     def _subir(self, i):
         # Pega o indice do pai
@@ -46,7 +65,7 @@ class BinaryHeap:
                     filho += 1
                     
             if self.array[i] < self.array[filho]:
-                
+                print(f"Descendo - {self.array[i]} <-> {self.array[filho]}")
                 # Swap entre pai e filho
                 aux = self.array[i]
                 self.array[i] = self.array[filho]
