@@ -82,7 +82,17 @@ class BinaryHeap:
         print("Resultado do Heap Sort:", sorted_list)
 
     def display_heap(self):
-        print(self.array)
+        nivel = 1
+        i = 1
+        while i <= self.size:
+            elementos_no_nivel = 2 ** (nivel - 1)
+            nivel_str = ''
+            for _ in range(elementos_no_nivel):
+                if i <= self.size:
+                    nivel_str += str(self.array[i]) + ' '
+                    i += 1
+            print(' ' * (math.ceil(math.log2(self.size)) - nivel + 1) + nivel_str)
+            nivel += 1
 
     def _subir(self, i):
         # Pega o indice do pai
